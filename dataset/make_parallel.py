@@ -1,6 +1,6 @@
 import glob
 
-def make_parallel(file_path, parallel_path):
+def make_parallel(file_path):
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
@@ -15,16 +15,20 @@ def make_parallel(file_path, parallel_path):
         if line != '\n':
             lines_2.append(line)
 
-    with open(parallel_path, 'a') as f:
+    with open(file_path, 'w') as f:
         for line in lines_2:
             f.write(line)
-            
+
 files = glob.glob('./data_original/*')
-files = sorted(files)
+# files = sorted(files)
+# make_parallel(files[0], './parallel/test_data/test_original.txt')
+# del files[0]
 for file in files:
-    module = make_parallel(file, './parallel/parallel_original.txt')
-    
+    make_parallel(file)
+
 files = glob.glob('./data_modern/*')
-files = sorted(files)
+# files = sorted(files)
+# make_parallel(files[0], './parallel/test_data/train_modern.txt')
+# del files[0]
 for file in files:
-    module = make_parallel(file, './parallel/parallel_modern.txt')
+    make_parallel(file)
