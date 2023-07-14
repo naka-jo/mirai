@@ -7,15 +7,17 @@ def remove_htmltag(file):
     
     new_lines = []
     for line in lines:
-        #line = re.sub('<.>', '', line)
-        #line = re.sub('<..>', '', line)
-        #line = re.sub('<...>', '', line)
-        #line = re.sub('（.*?）', '', line)
-        #line = re.sub('【.*?】', '', line)
-        #line = re.sub('<.*?>', '', line)
-        #line = re.sub('\[.*?\]', '', line)
-        #line = re.sub('《.*?》', '', line)
-        #line = re.sub('〔.*?〕', '', line)
+        line = re.sub('<p>', '\n', line)
+        line = re.sub('</p>', '\n', line)
+        line = re.sub('<.>', '', line)
+        line = re.sub('<..>', '', line)
+        line = re.sub('<...>', '', line)
+        line = re.sub('（.*?）', '', line)
+        line = re.sub('【.*?】', '', line)
+        line = re.sub('<.*?>', '', line)
+        line = re.sub('\[.*?\]', '', line)
+        line = re.sub('《.*?》', '', line)
+        line = re.sub('〔.*?〕', '', line)
         
         judge = re.search(r'第.章', line)
         if judge == None:
@@ -29,10 +31,10 @@ def remove_htmltag(file):
 # file = './test.txt'
 # module = remove_htmltag(file)
 
-files = glob.glob('./data_original/*')
+files = glob.glob('./dataset_splitP/data_original/*')
 for file in files:
     module = remove_htmltag(file)
 
-files = glob.glob('./data_modern/*')
+files = glob.glob('./dataset_splitP/data_modern/*')
 for file in files:
     module = remove_htmltag(file)
